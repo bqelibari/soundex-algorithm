@@ -1,14 +1,25 @@
-def soundex(word):
-    result = []
-    mapping = {'aeiouywh': '', 'bfpv': '1', 'cgjkqsxz': '2', 'dt': '3', 'l': '4', 'mn': '5', 'r': '6'}
-    for index, letter in enumerate(word, 1):
-        for key in mapping.keys( ):
-            if letter in key:
-                result.append(mapping[key])
-    result[0] = word[:1]
-    if len(result) < 3:
-        result.append('0')
-    result = list(dict.fromkeys(result))
-    return ''.join(result)
+mapping = {'aeiouywh': '', 'bfpv': '1', 'cgjkqsxz': '2', 'dt': '3', 'l': '4', 'mn': '5', 'r': '6'}
 
-print(soundex('Qelibari'))
+
+def soundex(word):
+    ...
+
+
+def get_first_letter(word: str):
+    return word[0]
+
+
+def remove_upper_case_vowels(word_list: list[str]) -> list:
+    return remove_given_chars(word_list, 'AEIOUWHY')
+
+
+def remove_lower_case_vowels(word_list: list[str]) -> list:
+    return remove_given_chars(word_list, 'aeiouwhy')
+
+
+def remove_given_chars(word_list: list[str], chars_to_remove: str) -> list[str]:
+    result = []
+    for element in word_list:
+        if element not in chars_to_remove:
+            result.append(element)
+    return result

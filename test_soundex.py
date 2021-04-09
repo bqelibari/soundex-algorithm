@@ -1,49 +1,38 @@
 import unittest
-from soundex import soundex
+import soundex
 
 
 class SoundexTestCase(unittest.TestCase):
-    def test_retainsFirstLetter(self):
-        code = soundex('myword')
-        self.assertEqual('m', code[0])
+    def test_gets_first_letter(self):
+        letter = soundex.get_first_letter('Akloo')
+        self.assertEqual('A', letter)
+        letter = soundex.get_first_letter('kkloo')
+        self.assertEqual('k', letter)
 
-    def test_removesVovels(self):
-        code = soundex('maauoy')
-        self.assertEqual('m', code)
-        code = soundex('aeiouwhy')
-        self.assertEqual('a', code)
 
-    def test_replacesConsonantsWith1(self):
-        code = soundex('mbpfvv')
-        self.assertEqual('m1',code)
+class RemoveVowelsTestCase(unittest.TestCase):
+    def test_removes_upper_case_vowels(self):
+        word = list('HELLOOOOOWHYS')
+        code = soundex.remove_upper_case_vowels(word)
+        self.assertEqual(['L', 'L', 'S'], code)
 
-    def test_replacesConsonantsWith2(self):
-        code = soundex('cgjkqsxz')
-        self.assertEqual('c2',code)
+        word = list('AEIOUHWY')
+        code = soundex.remove_upper_case_vowels(word)
+        self.assertEqual([], code)
 
-    def test_replacesConsonantsWith3(self):
-        code = soundex('mdtdtdt')
-        self.assertEqual('m3',code)
+    def test_removes_lover_case_vowels(self):
+        word = list('hellooowhys')
+        code = soundex.remove_lower_case_vowels(word)
+        self.assertEqual(['l', 'l', 's'], code)
 
-    def test_replacesConsonantsWith4(self):
-        code = soundex('mllll')
-        self.assertEqual('m4',code)
+        word = list('aeiouwhy')
+        code = soundex.remove_lower_case_vowels(word)
+        self.assertEqual([], code)
 
-    def test_replacesConsonantsWith5(self):
-        code = soundex('mmnmnmn')
-        self.assertEqual('m5',code)
-
-    def test_replacesConsonantsWith6(self):
-        code = soundex('mrrr')
-        self.assertEqual('m6',code)
-
-    def test_fullAlgorithm(self):
-        code = soundex("Qelibari")
-        self.assertEqual('Q416', code)
-        code = soundex("Robert")
-        self.assertEqual('R163', code)
-        code = soundex("Rupert")
-        self.assertEqual('R163', code)
+    def test_remove_given_chars(self):
+        word_list= list('abpqrsTUVWXxyz')
+        code = soundex.remove_given_chars(word_list,'abTUVXx')
+        self.assertEqual(['p', 'q', 'r', 's', 'W', 'y', 'z'], code)
 
 if __name__ == '__main__':
     unittest.main( )
