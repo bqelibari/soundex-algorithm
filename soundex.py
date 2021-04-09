@@ -23,3 +23,4 @@ def remove_given_chars(word_list: list[str], chars_to_remove: str) -> list[str]:
         if element not in chars_to_remove:
             result.append(element)
     return result
+
