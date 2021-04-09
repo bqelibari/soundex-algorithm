@@ -10,5 +10,3 @@ def soundex(word):
         result.append('0')
     result = list(dict.fromkeys(result))
     return ''.join(result)
-
-print(soundex('Qelibari'))
