@@ -16,10 +16,7 @@ def remove_upper_and_lower_case_vowels(char_list: list[str]) -> list:
 
 
 def remove_given_chars(word_list: list[str], chars_to_remove: str) -> list[str]:
-    result: list[str] = []
-    for element in word_list:
-        if element not in chars_to_remove:
-            result.append(element)
+    result = [char for char in word_list if char not in chars_to_remove]
     return result
 
 
@@ -28,3 +25,12 @@ def replace_given_consonants_with_value(char_list: list[str], consonants: str, v
         if element in consonants:
             char_list[idx] = value_as_string
     return char_list
+
+
+def remove_duplicates(char_list: list[str]) -> list[str]:
+    old = ''
+    for idx, char in enumerate(char_list, 0):
+        if char == old:
+            char_list[idx] = ''
+        old = char
+    return remove_given_chars(char_list, '')

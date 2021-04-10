@@ -26,11 +26,28 @@ class RemoveVowelsTestCase(unittest.TestCase):
         self.assertEqual(['p', 'q', 'r', 's', 'W', 'y', 'z'], code)
 
 
-class test_replace_consonants(unittest.TestCase):
+class ReplaceCharsTestCase(unittest.TestCase):
     def test_replaces_given_consonants_with_value(self):
         word_list = list('abpqrsTUvWXxyz')
         code = soundex.replace_given_consonants_with_value(word_list, 'bfpv', '1')
         self.assertEqual(list('a11qrsTU1WXxyz'), code)
+
+    def test_remove_duplicates(self):
+        char_list = list('111123111212111')
+        code = soundex.remove_duplicates(char_list)
+        self.assertEqual(list('12312121'), code)
+
+        char_list = list('111222333444555666111')
+        code = soundex.remove_duplicates(char_list)
+        self.assertEqual(list('1234561'), code)
+
+        char_list = list('1111111111111111')
+        code = soundex.remove_duplicates(char_list)
+        self.assertEqual(list('1'), code)
+
+        char_list = list('121212')
+        code = soundex.remove_duplicates(char_list)
+        self.assertEqual(list('121212'), code)
 
 
 if __name__ == '__main__':
