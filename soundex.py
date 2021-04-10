@@ -29,8 +29,8 @@ def replace_given_consonants_with_value(char_list: list[str], consonants: str, v
 
 def remove_duplicates(char_list: list[str]) -> list[str]:
     old = ''
-    for idx, char in enumerate(char_list, 0):
-        if char == old:
+    for idx, current_char in enumerate(char_list, 0):
+        if current_char == old:
             char_list[idx] = ''
-        old = char
+        old = current_char
     return remove_given_chars(char_list, '')
