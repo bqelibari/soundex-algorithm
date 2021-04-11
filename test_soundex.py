@@ -3,11 +3,20 @@ import soundex
 
 
 class SoundexTestCase(unittest.TestCase):
-    def test_gets_first_letter(self):
-        letter = soundex.get_first_letter('Akloo')
-        self.assertEqual('A', letter)
-        letter = soundex.get_first_letter('kkloo')
-        self.assertEqual('k', letter)
+    def test_soundex(self):
+        self.assertEqual('T522', soundex.soundex('Tymczak'))
+        self.assertEqual('R163', soundex.soundex('Rupert'))
+        self.assertEqual('R163', soundex.soundex('Robert'))
+        self.assertEqual('P236', soundex.soundex('Pfister'))
+        self.assertEqual('H555', soundex.soundex('Honeyman'))
+        self.assertEqual('R150', soundex.soundex('Rubin'))
+        self.assertEqual('A261', soundex.soundex('Ashcraft'))
+        self.assertEqual('A261', soundex.soundex('Ashcroft'))
+        self.assertEqual('Q416', soundex.soundex('Qelibari'))
+        self.assertEqual('R500', soundex.soundex('Romi'))
+        self.assertEqual('B265', soundex.soundex('Bajram'))
+        self.assertEqual('R263', soundex.soundex('Rezart'))
+
 
 
 class RemoveVowelsTestCase(unittest.TestCase):
@@ -32,7 +41,7 @@ class ReplaceCharsTestCase(unittest.TestCase):
         code = soundex.replace_given_consonants_with_value(word_list, 'bfpv', '1')
         self.assertEqual(list('a11qrsTU1WXxyz'), code)
 
-    def test_remove_duplicates(self):
+    def test_removes_duplicates(self):
         char_list = list('111123111212111')
         code = soundex.remove_duplicates(char_list)
         self.assertEqual(list('12312121'), code)
@@ -49,6 +58,12 @@ class ReplaceCharsTestCase(unittest.TestCase):
         code = soundex.remove_duplicates(char_list)
         self.assertEqual(list('121212'), code)
 
+    def test_appends_zeros_if_len_lower_than_4(self):
+        char_list = list('R6')
+        code = soundex.append_zeros_if_len_lower_than_4(char_list)
+        self.assertEqual('R600', code)
+
+    def test_gets_first_letter(self):
 
 if __name__ == '__main__':
     unittest.main( )
