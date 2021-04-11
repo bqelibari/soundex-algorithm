@@ -63,8 +63,5 @@ class ReplaceCharsTestCase(unittest.TestCase):
         code = soundex.append_zeros_if_len_lower_than_4(char_list)
         self.assertEqual('R600', code)
 
-    def test_gets_first_letter(self):
-        ...
-
 if __name__ == '__main__':
     unittest.main( )
