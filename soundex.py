@@ -36,11 +36,11 @@ def encode_consonants(word_to_encode: list[str]) -> list[str]:
     '''No test since its only use is to call another function and bc it was
     extracted from soundex() while refactoring'''
     for key, value in mapping.items( ):
-        word_to_encode = replace_given_consonants_with_value(word_to_encode, key, value)
+        word_to_encode = _replace_given_consonants_with_value(word_to_encode, key, value)
     return word_to_encode
 
 
-def replace_given_consonants_with_value(char_list: list[str], consonants: str, value_as_string: str) -> list[str]:
+def _replace_given_consonants_with_value(char_list: list[str], consonants: str, value_as_string: str) -> list[str]:
     for idx, element in enumerate(char_list, 0):
         if element in consonants:
             char_list[idx] = value_as_string

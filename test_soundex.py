@@ -38,7 +38,7 @@ class RemoveVowelsTestCase(unittest.TestCase):
 class ReplaceCharsTestCase(unittest.TestCase):
     def test_replaces_given_consonants_with_value(self):
         word_list = list('abpqrsTUvWXxyz')
-        code = soundex.replace_given_consonants_with_value(word_list, 'bfpv', '1')
+        code = soundex._replace_given_consonants_with_value(word_list, 'bfpv', '1')
         self.assertEqual(list('a11qrsTU1WXxyz'), code)
 
     def test_removes_duplicates(self):
@@ -64,6 +64,7 @@ class ReplaceCharsTestCase(unittest.TestCase):
         self.assertEqual('R600', code)
 
     def test_gets_first_letter(self):
+        ...
 
 if __name__ == '__main__':
     unittest.main( )
